@@ -52,7 +52,3 @@ class Login:
         conteudo = 'sua senha de recuperação é: '+  novaSenha
         Crud_usuario.UpdateSenhaUser(novaSenha,email)
         sendEmail.sendEmail(userName,password,[email],assunto,conteudo)
-
-
-#Login.logar('jonathassousasgs@gmail.com','Jonathas','123456')
-#Login.esqueceuSenha('jonathassousasgs@gmail.com')
