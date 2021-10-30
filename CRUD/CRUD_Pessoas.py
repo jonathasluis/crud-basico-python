@@ -35,8 +35,7 @@ class CrudPessoa:
         cnx, cursor = Connection.Con.fazConexao()
         try:
             sql = 'call delPessoa('+cpf+')'
-            dados = (cpf)
-            cursor.execute(sql,dados)
+            cursor.execute(sql)
             cnx.commit()
             cursor.close()
             cnx.close()
@@ -59,3 +58,9 @@ class CrudPessoa:
                 print(i)
         except Error as err:
             print("Failed select values: {}".format(err))
+
+
+#CrudPessoa.add_Pessoa('jose','14725836982','m','ro','ro','centro','qq','4',None,'c')
+#CrudPessoa.update_Pessoa('14725836982','hz','ro','ro','centro','qq','4',None,'c')
+#CrudPessoa.delete_Pessoa('14725836982')
+#CrudPessoa.select_Pessoa()

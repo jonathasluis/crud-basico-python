@@ -5,11 +5,11 @@ import Connection
 class Crud_vendas:
 
     #adiciona uma venda
-    def add_venda(idProduto,idVendedor,idCliente,valor,qtd):
+    def add_venda(idProduto,cpfVendedor,cpfCliente,valor,qtd):
         cnx, cursor = Connection.Con.fazConexao()
         try:
             sql = 'call addVenda(%s,%s,%s,%s,%s)'
-            dados = (idProduto,idCliente,idVendedor,valor,qtd)
+            dados = (idProduto,cpfCliente,cpfVendedor,valor,qtd)
             cursor.execute(sql,dados)
             cnx.commit()
             cursor.close()
@@ -30,3 +30,6 @@ class Crud_vendas:
             cnx.close()
         except Error as err:
             print("Failed select values: {}".format(err))
+
+#Crud_vendas.add_venda('3','14786474690','32478563248',500,1)
+#Crud_vendas.select_vendas()

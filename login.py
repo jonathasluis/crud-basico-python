@@ -1,6 +1,6 @@
-from CRUDUser import Crud_usuario
+from CRUD import CRUDUser
 from mysql.connector import Error
-import Connection as Connection
+import CRUD as Connection
 from werkzeug import security
 import sendEmail
 import random, string
@@ -50,5 +50,5 @@ class Login:
         assunto = 'Recuperação de senha'
         novaSenha = "".join(random.choices(string.ascii_letters + string.digits, k=8))
         conteudo = 'sua senha de recuperação é: '+  novaSenha
-        Crud_usuario.UpdateSenhaUser(novaSenha,email)
+        CRUDUser.UpdateSenhaUser(novaSenha,email)
         sendEmail.sendEmail(userName,password,[email],assunto,conteudo)
