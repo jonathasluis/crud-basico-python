@@ -21,7 +21,7 @@ class Crud_Produtos:
     def deleteProduto(id):
         cnx, cursor = Connection.Con.fazConexao()
         try:
-            sql = "call delproduto("+id+")"
+            sql = "call delProduto(\'"+ id +"\')"
             cursor.execute(sql)
             cnx.commit()
             cursor.close()
@@ -56,6 +56,3 @@ class Crud_Produtos:
         except Error as err:
             print("Failed select values: {}".format(err))
 
-
-
-Crud_Produtos.addProduto('14','a','a','a','a','a',1,1,1)
