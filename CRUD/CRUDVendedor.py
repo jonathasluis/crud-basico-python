@@ -1,5 +1,6 @@
 from mysql.connector import Error
-import Connection
+from CRUD import Connection
+import pandas as pd
 
 #classe vendedor
 class Crud_vendedores:
@@ -35,10 +36,13 @@ class Crud_vendedores:
         cnx,cursor = Connection.Con.fazConexao()
         try:
             sql = 'SELECT * FROM vendedoresEstendido'
+            colunas = ['cpf','nome','sexo','salario','data admissão','data demissão',
+                'estado','cidade','bairro','rua','numero casa','complemento']
             cursor.execute(sql)
-            for i in cursor:
-                print(i)
-
+            df = pd.DataFrame(cursor.fetchall())
+            df.columns = colunas
+            df.set_index('cpf', inplace=True)
+            print(df)
             cursor.close()
             cnx.close()
         except Error as err:
