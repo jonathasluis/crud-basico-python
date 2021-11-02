@@ -19,11 +19,11 @@ class CrudTelefones:
             print("Failed insert values: {}".format(err))
 
     #atualiza dados de um telefone
-    def update_Telefone(cpf,numero):
+    def update_Telefone(cpf,numeroNovo,telefoneAntigo):
         cnx, cursor = Connection.Con.fazConexao()
         try:
-            sql = 'call updTelefone(%s,%s)'
-            dados = (cpf,numero)
+            sql = 'call updTelefone(%s,%s,%s)'
+            dados = (cpf,numeroNovo,telefoneAntigo)
             cursor.execute(sql,dados)
             cnx.commit()
             cursor.close()
@@ -51,10 +51,15 @@ class CrudTelefones:
             sql = 'SELECT telefone FROM telefones WHERE cpf ='+ cpf
             colunas = ['telefone']
             cursor.execute(sql)
-            df = pd.DataFrame(cursor.fetchall())
-            df.columns = colunas
-            df.index = range(1, len(df)+1)
-            print(df)
+            data = cursor.fetchall()
+            if data != []:
+                df = pd.DataFrame(data)
+                df.columns = colunas
+                df.index = range(1, len(df)+1)
+                print(df)
+            else:
+                print('não há telefones!')
+
             cursor.close()
             cnx.close()
         except Error as err:

@@ -49,7 +49,7 @@ def produtos():
 def pessoa():
     while True:
         opcao = int(input('\nescolha um opcao: (1) adicionar pessoa | (2) atualizar pessoa ' \
-            '(3) remover pessoa | (4) listar pessoa | (5) voltar: '))
+            '(3) remover pessoa | (4) listar pessoa | (5) listar telefone | (6) voltar: '))
 
         if opcao == 1:
             nome = input('nome: ')
@@ -82,6 +82,27 @@ def pessoa():
             complemento = input('complemento: ')
             tipo =  input('tipo: ')
             crudPessoa.CrudPessoa.update_Pessoa(cpf,nome,estado,cidade,bairro,rua,numeroCasa,complemento,tipo)
+            print('\n')
+            tel.CrudTelefones.select_Telefone(cpf)
+            op = int(input('\nO que fazer com telefones: (1) alterar | (2) remover | (3) nada: '))
+            
+            if op == 1:
+                qtd = int(input('quantos deseja alterar? '))
+                i = 1
+                while i <= qtd:
+                    telefoneA, telefoneN = input('telefoneAntigo telefoneNovo: ').split()
+                    tel.CrudTelefones.update_Telefone(cpf,telefoneN,telefoneA)
+                    i+=1
+
+            elif op == 2:
+                qtd = int(input('quantos deseja remover? '))
+                i = 1
+                while i <= qtd:
+                    telefoneA = input('telefone: ')
+                    tel.CrudTelefones.delete_Telefone(cpf,telefoneA)
+                    i+=1
+            else:
+                pass
 
         elif opcao == 3:
             cpf = input('cpf: ')
@@ -91,6 +112,10 @@ def pessoa():
             crudPessoa.CrudPessoa.select_Pessoa()
 
         elif opcao == 5:
+            cpf = input('cpf: ')
+            tel.CrudTelefones.select_Telefone(cpf)
+
+        elif opcao == 6:
             return
 
 #faz operacoes com os vendedores
