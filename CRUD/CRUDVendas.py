@@ -34,6 +34,3 @@ class Crud_vendas:
             cnx.close()
         except Error as err:
             print("Failed select values: {}".format(err))
-
-#Crud_vendas.add_venda('3','14786474690','32478563248',500,1)
-#Crud_vendas.select_vendas()

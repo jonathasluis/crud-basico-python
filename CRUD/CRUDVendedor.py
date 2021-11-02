@@ -47,7 +47,3 @@ class Crud_vendedores:
             cnx.close()
         except Error as err:
             print("Failed select values: {}".format(err))
-
-#Crud_vendedores.add_vendedor('16473198643',200,'2020-05-25','2020-05-26')
-#Crud_vendedores.update_vendedor('16473198643',250,None)
-#Crud_vendedores.select_vendedores()

@@ -2,6 +2,7 @@ from CRUD import CRUDProdutos as crudP
 from CRUD import CRUD_Pessoas as crudPessoa
 from CRUD import CRUDVendedor as crudV
 from CRUD import CRUDVendas
+from CRUD import CRUD_Telefones as tel
 import os
 
 #faz operaçoes com os produtos
@@ -61,7 +62,14 @@ def pessoa():
             numeroCasa = input('numero da Casa: ')
             complemento = input('complemento: ')
             tipo =  input('tipo: ')
+            quantidadeTel = int(input('Quantos telefones deseja adicionar? '))
             crudPessoa.CrudPessoa.add_Pessoa(nome,cpf,sexo,estado,cidade,bairro,rua,numeroCasa,complemento,tipo)
+
+            i = 1
+            while i <= quantidadeTel:
+                telefone = input('{} - numero: '.format(i))
+                tel.CrudTelefones.insert_Telefone(cpf,telefone)
+                i+=1
 
         elif opcao == 2:
             cpf = input('cpf: ')
@@ -113,7 +121,7 @@ def vendedores():
 #faz operacoes com as vendas
 def vendas():
     while True:
-        opcao = int(input('escolha um opcao: (1) adicionar venda |  (2) listar vendas | (3) voltar: '))
+        opcao = int(input('\nescolha um opcao: (1) adicionar venda |  (2) listar vendas | (3) voltar: '))
 
         if opcao == 1:
             idP = input('id do produto: ')
@@ -152,7 +160,6 @@ def main():
             os.system('cls' if os.name == 'nt' else 'clear')
             vendas() 
     
-        
         elif opcao == 5:
             os.system('cls' if os.name == 'nt' else 'clear')
             return
